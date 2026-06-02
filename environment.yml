@@ -1,0 +1,15 @@
+name: your-repo-name-nf
+channels:
+  - conda-forge
+  - bioconda
+channel_priority: strict
+dependencies:
+  #example core libraries
+  - python=3.10
+  - git
+  - pandas
+  - numpy
+  - scikit-learn
+  - tqdm
+  - docopt
+  - procps-ng
