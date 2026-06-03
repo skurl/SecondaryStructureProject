@@ -1,2 +1,5 @@
 data/data.csv
 __pycache__/
+work/
+.nextflow/
+.gitignore

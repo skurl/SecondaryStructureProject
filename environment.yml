@@ -1,10 +1,12 @@
-name: your-repo-name-nf
+name: secondary-structure-project
+
 channels:
   - conda-forge
   - bioconda
+
 channel_priority: strict
+
 dependencies:
-  #example core libraries
   - python=3.10
   - git
   - pandas
@@ -13,3 +15,5 @@ dependencies:
   - tqdm
   - docopt
   - procps-ng
+  - matplotlib
+  - nextflow

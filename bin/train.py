@@ -59,7 +59,7 @@ def train_model(
     tgt_vocab_size,
     num_epochs=100,
     learning_rate=0.0001,
-    save_path="./data/weights.pth"
+    save_path="./outputs/weights.pth"
 ):
     criterion = nn.CrossEntropyLoss(ignore_index=PAD_LABEL)
     optimizer = optim.Adam(
