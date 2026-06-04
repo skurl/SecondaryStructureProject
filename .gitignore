@@ -1,1 +1,19 @@
-Data_SecondaryStructure/data.csv
+data/data.csv
+__pycache__/
+work/
+.nextflow/
+.gitignore
+<<<<<<< HEAD
+data/weights.pth
+output/weights.pth
+./.venv/lib/python3.13/site-packages/torch/lib/libtorch_cpu.dylib
+./.git/objects/eb/ee9b9d1e8d786dff7e400bb2e9ee1467857543
+./data/data.csv
+*.sif
+*.tar
+*.pth
+.nextflow*
+.ipynb_checkpoints/
+.DS_Store
+=======
+>>>>>>> 26dfcf78dc672b2c1db45bf12b1651805314ce44
