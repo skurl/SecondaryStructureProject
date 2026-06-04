@@ -20,8 +20,15 @@ def load_data(data_path = "./data/data.csv", set_length = 72):
     ss_stoi = {s: i for i, s in enumerate(SecondaryStructures)}
     ss_itos = {i: s for i, s in enumerate(SecondaryStructures)}
 
+<<<<<<< HEAD
     ss_encode = lambda s: [ss_stoi[c] for c in s]
     ss_decode = lambda l: "".join([ss_itos[i] for i in l])
+=======
+    PAD_LABEL = -100
+
+    ss_encode = lambda s: [ss_stoi[c] for c in s]
+    ss_decode = lambda l: "".join([ss_itos[i] for i in l if i != PAD_LABEL])
+>>>>>>> 26dfcf78dc672b2c1db45bf12b1651805314ce44
 
     X = torch.stack([
         torch.tensor(aa_encode(seq), dtype=torch.long)
@@ -33,4 +40,8 @@ def load_data(data_path = "./data/data.csv", set_length = 72):
         for sst8 in df["sst8"]
     ])
     
+<<<<<<< HEAD
     return X, y, AminoAcids, SecondaryStructures, aa_stoi, aa_itos, aa_encode, aa_decode, ss_stoi, ss_itos, ss_encode, ss_decode, set_length
+=======
+    return X, y, AminoAcids, SecondaryStructures, aa_stoi, aa_itos, aa_encode, aa_decode, ss_stoi, ss_itos, ss_encode, ss_decode, PAD_LABEL, set_length
+>>>>>>> 26dfcf78dc672b2c1db45bf12b1651805314ce44

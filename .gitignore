@@ -4,6 +4,7 @@ work/
 .nextflow/
 .gitignore
 <<<<<<< HEAD
+<<<<<<< HEAD
 data/weights.pth
 output/weights.pth
 ./.venv/lib/python3.13/site-packages/torch/lib/libtorch_cpu.dylib
@@ -15,5 +16,7 @@ output/weights.pth
 .nextflow*
 .ipynb_checkpoints/
 .DS_Store
+=======
+>>>>>>> 26dfcf78dc672b2c1db45bf12b1651805314ce44
 =======
 >>>>>>> 26dfcf78dc672b2c1db45bf12b1651805314ce44
