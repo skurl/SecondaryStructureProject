@@ -6,7 +6,7 @@ Im trying to learn how to encode transformer-based ML models.
 
 - Maciej Szczesny
 
-££ Notes
+## Notes
 [2026-06-01]: Basically the other notebook is a suboptimal to run on a computer. MOST OF THE TRANSFORMER CODE FROM HERE.
 
 Length size of 72 was used because 1. It contains 700+ seq. 2.
