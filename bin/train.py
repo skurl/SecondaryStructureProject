@@ -11,8 +11,8 @@ def run_epoch(model, loader, criterion, optimizer, device, tgt_vocab_size, train
     total_loss = 0
 
     for X_batch, y_batch in loader:
-        X_batch = X_batch.to(device)
-        y_batch = y_batch.to(device)
+        X_batch = X_batch.to(device).float()
+        y_batch = y_batch.to(device).long()
 
         output = model(X_batch)
 

@@ -6,6 +6,7 @@ from torch.utils.data import TensorDataset
 from data_loader import load_data
 from train import train_model
 from model import Transformer
+from testing import test_model
 
 device = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu" # when running locally with newer PyTorch versions with torch.accelerator support
 
@@ -25,7 +26,7 @@ train_loader = DataLoader(traindata, batch_size=32, shuffle=True)
 val_loader = DataLoader(valdata, batch_size=32, shuffle=False)
 test_loader = DataLoader(testdata, batch_size=32, shuffle=False)
 
-src_vocab_size = len(AminoAcids) + 1
+src_vocab_size = len(AminoAcids)
 tgt_vocab_size = len(SecondaryStructures)
 d_model = 64
 num_heads = 2
@@ -47,8 +48,6 @@ transformer = train_model(
     save_path="./outputs/weights.pth"
     # save_path=save_path
 )
-
-from testing import test_model
 
 criterion = nn.CrossEntropyLoss(ignore_index=-100)
 

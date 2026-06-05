@@ -19,8 +19,6 @@ def test_model(model, test_loader, device, tgt_vocab_size, criterion):
         
             tgt_output = y_batch
 
-
-
             loss = criterion(
                 output.contiguous().view(-1, tgt_vocab_size),
                 tgt_output.contiguous().view(-1)

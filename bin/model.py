@@ -1,7 +1,5 @@
 import torch
 import torch.nn as nn
-import torch.optim as optim
-import torch.utils.data as data
 import math
 import copy
 
@@ -76,10 +74,10 @@ class LocalConv(nn.Module):
         super().__init__()
         padding = kernel_size // 2
         self.conv = nn.Sequential(
-            nn.Conv1d(in_channels=d_model, out_channels=d_model, kernel_size=kernel_size, padding=padding),
+            nn.Conv1d(in_channels=d_model, out_channels=d_model, kernel_size=kernel_size, padding=padding, groups=d_model),
             nn.GELU(),
+            nn.Conv1d(in_channels=d_model, out_channels=d_model, kernel_size=1),
             nn.Dropout(dropout),
-            nn.Conv1d(in_channels=d_model, out_channels=d_model, kernel_size=1)
         )
 
     def forward(self, x):
@@ -113,25 +111,23 @@ class EncoderLayer(nn.Module):
 class Transformer(nn.Module):
     def __init__(self, src_vocab_size,tgt_vocab_size, d_model, num_heads, num_layers, d_ff, max_seq_length, dropout):
         super(Transformer, self).__init__()
-        self.encoder_embedding = nn.Embedding(src_vocab_size, d_model, padding_idx=0)
+        self.encoder_embedding = nn.Linear(src_vocab_size, d_model)
         self.positional_encoding = PositionalEncoding(d_model, max_seq_length)
         self.encoder_layers = nn.ModuleList([EncoderLayer(d_model, num_heads, d_ff, dropout) for _ in range(num_layers)])
         self.fc = nn.Linear(d_model, tgt_vocab_size)
+        self.final_norm = nn.LayerNorm(d_model)
         self.dropout = nn.Dropout(dropout)
 
-    def generate_src_mask(self, src):
-        src_mask = (src != 0).unsqueeze(1).unsqueeze(2)
-        return src_mask
 
     def forward(self, src):
-        src_mask = self.generate_src_mask(src)
-
         x = self.encoder_embedding(src)
         x = self.positional_encoding(x)
         x = self.dropout(x)
 
         for enc_layer in self.encoder_layers:
-            x = enc_layer(x, src_mask)
+            x = enc_layer(x, mask=None)
 
+        
+        x = self.final_norm(x)
         output = self.fc(x)
         return output
